@@ -215,48 +215,14 @@ def main(st, iframe_style):
     this data.
         '''
     st.markdown(multi, unsafe_allow_html=True)
-    
-    # Divider
-    st.image('top_data-science-divider-1.png',  width=1024, output_format='auto')
-    st.write("\n\n")
-
-    # Figure 7
-    st.markdown("""
-    <h5 style='text-align: left; font-weight: bold; color: #204760; margin-bottom: -10px;'>Figure (7) Line Charge (Plotly Express)</h5>
-    """, unsafe_allow_html=True)
-    st.markdown("""
-    <h4 style='text-align: left; font-weight: bold; color: #204760; margin-bottom: -10px;'>AVERAGE PROGRAM BILLING BY MONTH</h4>
-    """, unsafe_allow_html=True)
-    
-    df = read_original_data()
-    # Convert 'Date' column to datetime
-    df['Date'] = pd.to_datetime(df['Date'], format='%m/%d/%Y')
-
-    # Group by 'Program' and 'Date', then calculate the mean of 'Billing Amount'
-    monthly_billing = df.groupby(['Program', pd.Grouper(key='Date', freq='M')])['Billing Amount'].mean().reset_index()
-
-    # Create an interactive line plot using Plotly Express
-    fig = px.line(monthly_billing, x='Date', y='Billing Amount', color='Program', 
-                title='Program Billing Amount Over Months',
-                labels={'Billing Amount': 'Average Billing Amount ($)', 'Date': 'Date'},
-                markers=True)
-
-    # Enhance the layout
-    fig.update_layout(xaxis_title='Date',
-                    yaxis_title='Average Billing Amount ($)',
-                    xaxis_tickangle=-45,
-                    xaxis=dict(tickformat='%b %Y'))  # Format x-axis tick labels to show abbreviated month and year
-
-    # Show the plot in Streamlit
-    st.plotly_chart(fig)
 
     # Divider
     st.image('top_data-science-divider-1.png',  width=1024, output_format='auto')
     st.write("\n\n")
        
-    # Figure 8
+    # Figure 7
     st.markdown("""
-    <h5 style='text-align: left; font-weight: bold; color: #204760; margin-bottom: -10px;'>Figure (8) Confusion Matrix (Seaborn)</h5>
+    <h5 style='text-align: left; font-weight: bold; color: #204760; margin-bottom: -10px;'>Figure (7) Confusion Matrix (Seaborn)</h5>
     """, unsafe_allow_html=True)
     st.markdown("""
     <h4 style='text-align: left; font-weight: bold; color: #204760; margin-bottom: -10px;'>AVERAGE PROGRAM BILLING BY MONTH</h4>
