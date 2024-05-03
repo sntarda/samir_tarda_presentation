@@ -215,33 +215,3 @@ def main(st, iframe_style):
     this data.
         '''
     st.markdown(multi, unsafe_allow_html=True)
-
-    # Divider
-    st.image('top_data-science-divider-1.png',  width=1024, output_format='auto')
-    st.write("\n\n")
-       
-    # Figure 7
-    st.markdown("""
-    <h5 style='text-align: left; font-weight: bold; color: #204760; margin-bottom: -10px;'>Figure (7) Confusion Matrix (Seaborn)</h5>
-    """, unsafe_allow_html=True)
-    st.markdown("""
-    <h4 style='text-align: left; font-weight: bold; color: #204760; margin-bottom: -10px;'>AVERAGE PROGRAM BILLING BY MONTH</h4>
-    """, unsafe_allow_html=True)
-
-    df = confusion_matrix_data(data=any)
-    
-    heatmap_data = df.pivot_table(index='Program', columns='Date', values='Billing Amount', aggfunc='mean')
-    fig, ax = plt.subplots(figsize=(10.24, 6.12))  # You create a Matplotlib figure and axis
-    sns.heatmap(heatmap_data, annot=True, fmt=".0f", linewidths=.5, cmap="YlGnBu", ax=ax)
-    # Format the dates on the x-axis to be month abbreviations
-    ax.set_xticklabels([pd.to_datetime(date).strftime('%b %Y') for date in heatmap_data.columns])
-    # Set labels and title
-    ax.set_title("Average Program Billing Amount By Month")
-    ax.set_xlabel("Date")
-    ax.set_ylabel("Program")
-    # Rotate the x-axis labels for better readability
-    plt.xticks(rotation=45)
-    # Ensure the plot is tight and nothing is cut off
-    plt.tight_layout()
-    # Display the plot in the Streamlit app
-    st.pyplot(fig)
